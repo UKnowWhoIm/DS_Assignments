@@ -45,8 +45,12 @@ void insert(Polynomial* polynomial, Factor* newfactor){
         previous = i;
     if(previous == i){
         // Insert begining
-        newfactor->next = polynomial->top;
-        polynomial->top = newfactor;
+        if(i && i->exponent == newfactor->exponent)
+            i->coefficent += newfactor->coefficent;
+        else{
+            newfactor->next = polynomial->top;
+            polynomial->top = newfactor;
+        }
     }
     else{
         if(i && i->exponent == newfactor->exponent)
